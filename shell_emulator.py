@@ -205,6 +205,7 @@ def demonstrate_prototype():
     print("=" * 60)
 
 
+
 def main():
     """Основная функция"""
     if len(sys.argv) > 1 and sys.argv[1] == "--demo":
