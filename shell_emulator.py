@@ -3,7 +3,6 @@ import sys
 import socket
 import shlex
 
-
 class ComLineEm:
     def __init__(self):
         self.current_path = "~"
@@ -11,7 +10,7 @@ class ComLineEm:
         self.hostname = socket.gethostname()
 
     def run(self):
-        print("Эмулятор командной строки. Для выхода введите 'exit'")
+        print("Эмулятор командной строки. Для справки введите 'help'. Для выхода введите 'exit'")
         print("-" * 50)
 
         while True:
@@ -38,7 +37,7 @@ class ComLineEm:
                         print("Выход из эмулятора")
                         break
                     else:
-                        print("Ошибка: команда exit не принимает аргументы")
+                        print("Команда exit не принимает аргументы")
                 elif command == 'ls':
                     self.ls(args)
                 elif command == 'cd':
@@ -48,27 +47,21 @@ class ComLineEm:
                 else:
                     print(f"Ошибка: неизвестная команда '{command}'")
 
-            except KeyboardInterrupt:
-                print("\nДля выхода введите 'exit'")
-            except EOFError:
-                print("\nВыход из эмулятора")
-                break
+
             except Exception as e:
                 print(f"Ошибка: {e}")
 
     def ls(self, args):
-        """Заглушка для команды ls - выводит имя и аргументы"""
         if args:
             print(f"ls {args}")
         else:
-            print("введите аргументы")
+            print("ls []")
 
     def cd(self, args):
-        """Заглушка для команды cd - выводит имя и аргументы"""
         if args:
             print(f"cd {args}")
         else:
-            print("введите аргументы")
+            print("cd []")
 
     def help(self):
         print(" Доступные команды")
