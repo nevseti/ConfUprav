@@ -1,0 +1,20 @@
+# Быстрый тест Этапа 4
+uname
+
+vfs-info
+
+ls
+cd home
+ls
+cd user
+ls
+cd /
+ls etc
+
+cal
+cal 12 2024
+
+uniq readme.txt
+uniq test.txt
+
+exit
