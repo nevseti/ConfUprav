@@ -15,14 +15,12 @@ class ComLineEm:
 
         while True:
             try:
-                # приглашение с реальными данными ОС
                 prompt = f"{self.user}@{self.hostname}:{self.current_path}$ "
                 command_input = input(prompt).strip()
 
                 if not command_input:
                     continue
 
-                # shlex для корректного парсинга аргументов в кавычках
                 try:
                     parsed_args = shlex.split(command_input)
                 except ValueError as e:
