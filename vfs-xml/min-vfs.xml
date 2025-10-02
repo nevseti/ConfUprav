@@ -1,0 +1,6 @@
+<vfs name="minimal_test">
+    <folder path="/">
+        <file name="hello.txt">Hello World!</file>
+        <file name="binary_data.bin" encoding="base64">SGVsbG8gQmFzZTY0IQ==</file>
+    </folder>
+</vfs>
