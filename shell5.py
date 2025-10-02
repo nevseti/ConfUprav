@@ -272,6 +272,10 @@ class ComLineEm:
             return self.uniq(args)
         elif command == 'uname':
             return self.uname(args)
+        elif command == 'rmdir':
+            return self.rmdir(args)
+        elif command == 'cp':
+            return self.cp(args)
         else:
             print(f"Ошибка: неизвестная команда '{command}'")
             if from_script:
@@ -435,6 +439,101 @@ class ComLineEm:
         else:
             print("VFS не загружена")
 
+    def rmdir(self, args):
+        if not self.vfs.get_info()['loaded']:
+            print("Ошибка: VFS не загружена")
+            return False
+
+        if not args:
+            print("Ошибка: укажите директорию для удаления")
+            return False
+
+        if len(args) > 1:
+            print("Ошибка: слишком много аргументов")
+            return False
+
+        dir_path = self._normalize_path(args[0])
+
+        if dir_path == "/":
+            print("Ошибка: нельзя удалить корневую директорию")
+            return False
+
+        node = self.vfs.get_node(dir_path)
+        if not node:
+            print(f"Ошибка: директория не существует: {dir_path}")
+            return False
+
+        if not isinstance(node, VFSFolder):
+            print(f"Ошибка: указанный путь не является директорией: {dir_path}")
+            return False
+
+        if node.children:
+            print(f"Ошибка: директория не пуста: {dir_path}")
+            return False
+
+        parent_path = '/'.join(dir_path.rstrip('/').split('/')[:-1])
+        if not parent_path:
+            parent_path = "/"
+
+        parent_node = self.vfs.get_node(parent_path)
+        if not parent_node or not isinstance(parent_node, VFSFolder):
+            print("Ошибка: невозможно получить доступ к родительской директории")
+            return False
+
+        dir_name = dir_path.split('/')[-1]
+        if dir_name in parent_node.children:
+            del parent_node.children[dir_name]
+            return True
+        else:
+            print("Ошибка: не удалось удалить директорию")
+            return False
+
+    def cp(self, args):
+        if not self.vfs.get_info()['loaded']:
+            print("Ошибка: VFS не загружена")
+            return False
+
+        if len(args) != 2:
+            print("Ошибка: использование: cp <источник> <назначение>")
+            return False
+
+        src_path = self._normalize_path(args[0])
+        dst_path = self._normalize_path(args[1])
+
+        src_node = self.vfs.get_node(src_path)
+        if not src_node:
+            print(f"Ошибка: исходный файл не существует: {src_path}")
+            return False
+
+        if not isinstance(src_node, VFSFile):
+            print(f"Ошибка: исходный путь не является файлом: {src_path}")
+            return False
+
+        dst_parent_path = '/'.join(dst_path.rstrip('/').split('/')[:-1])
+        if not dst_parent_path:
+            dst_parent_path = "/"
+
+        dst_name = dst_path.split('/')[-1]
+
+        dst_parent = self.vfs.get_node(dst_parent_path)
+        if not dst_parent or not isinstance(dst_parent, VFSFolder):
+            print(f"Ошибка: целевая директория не существует: {dst_parent_path}")
+            return False
+
+        existing_node = self.vfs.get_node(dst_path)
+        if existing_node and isinstance(existing_node, VFSFolder):
+            dst_path = dst_path.rstrip('/') + '/' + src_node.name
+            dst_name = src_node.name
+
+        try:
+            new_file = VFSFile(dst_name, dst_path, src_node.content, src_node.encoding)
+            dst_parent.children[dst_name] = new_file
+            print(f"Файл скопирован: '{src_path}' -> '{dst_path}'")
+            return True
+        except Exception as e:
+            print(f"Ошибка при копировании: {e}")
+            return False
+
     def help(self):
         print(" Доступные команды")
         print("  ls [путь] - показать содержимое директории")
@@ -445,7 +544,8 @@ class ComLineEm:
         print("  vfs-info - информация о загруженной VFS")
         print("  exit - выход из эмулятора")
         print("  help - показать эту справку")
-
+        print("  rmdir [директория] - удалить пустую директорию")
+        print("  cp <источник> <назначение> - копировать файл")
 
 def main():
     parser = argparse.ArgumentParser(description='Эмулятор командной строки')

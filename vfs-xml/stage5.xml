@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vfs name="stage5_test">
+    <file name="readme.txt">Добро пожаловать!
+Строка 1
+Строка 1
+Строка 2
+Строка 3
+Строка 3
+Строка 3</file>
+
+    <file name="test.txt">яблоко
+яблоко
+банан
+вишня
+яблоко</file>
+
+    <file name="config.txt">параметр1=значение1
+параметр2=значение2
+параметр3=значение3</file>
+
+    <folder name="home">
+        <folder name="user">
+            <file name="doc.txt">Мои документы</file>
+            <file name="notes.txt">Заметки пользователя
+важная заметка
+обычная заметка
+важная заметка</file>
+        </folder>
+    </folder>
+
+    <folder name="etc">
+        <file name="settings.conf">theme=dark
+language=ru
+timeout=30</file>
+    </folder>
+
+    <!-- НОВАЯ ПУСТАЯ ПАПКА ДЛЯ ТЕСТИРОВАНИЯ rmdir -->
+    <folder name="temp">
+        <!-- Пустая папка -->
+    </folder>
+
+    <folder name="backup">
+        <!-- Еще одна пустая папка -->
+    </folder>
+</vfs>

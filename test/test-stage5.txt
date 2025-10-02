@@ -1,0 +1,35 @@
+# Тестирование Этапа 5 - дополнительные команды
+ls
+
+cp readme.txt readme_new.txt
+ls
+
+cp test.txt home/test_copy.txt
+ls home
+
+
+
+ls
+rmdir temp
+ls
+
+# Попытка удалить непустую папку
+# rmdir home
+
+# Попытка удалить несуществующую папку
+# rmdir nonexistent
+
+# Попытка удалить файл вместо папки
+# rmdir readme.txt
+
+# Попытка удалить корневую директорию
+# rmdir /
+
+# Проверка результатов копирования
+# Содержимое оригинального файла:
+# uniq test.txt
+
+# Содержимое скопированного файла
+# uniq home/test_copy.txt
+
+ls
