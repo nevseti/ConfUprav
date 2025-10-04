@@ -3,12 +3,12 @@
         <file name="root_file.txt">Root level file</file>
         <folder name="home">
             <folder name="user">
-                <file name="documents">
+                <folder name="documents">
                     <folder name="projects">
                         <file name="readme.txt">Project documentation</file>
                         <file name="config.bin" encoding="base64"> Q29uZmlnIERhdGE=</file>
                     </folder>
-                </file>
+                </folder>
                 <file name="profile.txt">User profile data</file>
             </folder>
             <folder name="admin">
