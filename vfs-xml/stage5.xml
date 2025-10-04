@@ -14,9 +14,13 @@
 вишня
 яблоко</file>
 
-    <file name="config.txt">параметр1=значение1
-параметр2=значение2
-параметр3=значение3</file>
+    <file name="data.bin" encoding="base64">
+VGhpcyBpcyBhIGJpbmFyeSBmaWxlLgpMaW5lIDEuCkxpbmUgMi4KTGluZSAxLgpMaW5lIDMu
+    </file>
+
+    <file name="config.dat" encoding="base64">
+c2V0dGluZzE9dmFsdWUxCnNldHRpbmcyPXZhbHVlMgpzZXR0aW5nMT12YWx1ZTE=
+    </file>
 
     <folder name="home">
         <folder name="user">
@@ -34,12 +38,10 @@ language=ru
 timeout=30</file>
     </folder>
 
-    <!-- НОВАЯ ПУСТАЯ ПАПКА ДЛЯ ТЕСТИРОВАНИЯ rmdir -->
+
     <folder name="temp">
-        <!-- Пустая папка -->
     </folder>
 
     <folder name="backup">
-        <!-- Еще одна пустая папка -->
     </folder>
 </vfs>
