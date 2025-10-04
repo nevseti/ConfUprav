@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vfs name="minimal_test">
+    <file name="hello.txt">
+        Hello World!
+        This is a minimal VFS.
+    </file>
+
+    <file name="numbers.txt">
+        1
+        2
+        2
+        3
+        3
+        3
+    </file>
+
+    <folder name="docs">
+        <file name="readme.txt">Documentation here</file>
+    </folder>
+
+    <folder name="empty_dir">
+    </folder>
+</vfs>

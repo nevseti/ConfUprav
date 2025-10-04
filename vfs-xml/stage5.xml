@@ -1,41 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <vfs name="stage5_test">
-    <file name="readme.txt">Добро пожаловать!
-Строка 1
-Строка 1
-Строка 2
-Строка 3
-Строка 3
-Строка 3</file>
+    <file name="readme.txt">
+        Добро пожаловать!
+        Это эмулятор командной строки
+    </file>
 
-    <file name="test.txt">яблоко
-яблоко
-банан
-вишня
-яблоко</file>
+    <file name="test.txt">
+        яблоко
+        яблоко
+        банан
+        банан
+        банан
+        банан
+        вишня
+        яблоко
+    </file>
 
     <file name="data.bin" encoding="base64">
-VGhpcyBpcyBhIGJpbmFyeSBmaWxlLgpMaW5lIDEuCkxpbmUgMi4KTGluZSAxLgpMaW5lIDMu
+        VGhpcyBpcyBhIGJpbmFyeSBmaWxlLgpMaW5lIDEuCkxpbmUgMi4KTGluZSAxLgpMaW5lIDMu
     </file>
 
     <file name="config.dat" encoding="base64">
-c2V0dGluZzE9dmFsdWUxCnNldHRpbmcyPXZhbHVlMgpzZXR0aW5nMT12YWx1ZTE=
+        c2V0dGluZzE9dmFsdWUxCnNldHRpbmcyPXZhbHVlMgpzZXR0aW5nMT12YWx1ZTE=
     </file>
 
     <folder name="home">
         <folder name="user">
             <file name="doc.txt">Мои документы</file>
             <file name="notes.txt">Заметки пользователя
-важная заметка
-обычная заметка
-важная заметка</file>
+                важная заметка
+                обычная заметка
+                важная заметка
+            </file>
         </folder>
     </folder>
 
     <folder name="etc">
         <file name="settings.conf">theme=dark
-language=ru
-timeout=30</file>
+            language=ru
+            timeout=30
+        </file>
     </folder>
 
 

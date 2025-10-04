@@ -130,7 +130,7 @@ class VirtualFileSystem:
 
 
 
-class ComLineEm:
+class ShellEm:
     def __init__(self, vfs_path=None, script_path=None):
         self.current_path = "/"
         self.user = os.getlogin()
@@ -276,6 +276,8 @@ class ComLineEm:
             return self.rmdir(args)
         elif command == 'cp':
             return self.cp(args)
+        elif command == 'cat':
+            return self.cat(args)
         else:
             print(f"Ошибка: неизвестная команда '{command}'")
             if from_script:
@@ -417,9 +419,9 @@ class ComLineEm:
     def uname(self, args):
         info = [
             f"Операционная система: {sys.platform}",
-            f"Имя хоста: {self.hostname}",
+            f"Имя устройства: {self.hostname}",
             f"Пользователь: {self.user}",
-            f"Python версия: {sys.version.split()[0]}"
+            # f"Python версия: {sys.version.split()[0]}"
         ]
 
         for line in info:
@@ -534,11 +536,45 @@ class ComLineEm:
             print(f"Ошибка при копировании: {e}")
             return False
 
+    def cat(self, args):
+        """Реализация команды cat - вывод содержимого файлов"""
+        if not self.vfs.get_info()['loaded']:
+            print("Ошибка: VFS не загружена")
+            return False
+
+        if not args:
+            print("Ошибка: укажите файл для просмотра")
+            return False
+
+        if len(args) > 1:
+            print("Ошибка: слишком много аргументов")
+            return False
+
+        file_path = self._normalize_path(args[0])
+
+        # Получаем узел файла
+        node = self.vfs.get_node(file_path)
+        if not node:
+            print(f"Ошибка: файл не существует: {file_path}")
+            return False
+
+        if not isinstance(node, VFSFile):
+            print(f"Ошибка: указанный путь не является файлом: {file_path}")
+            return False
+
+        if node.content:
+            print(node.content)
+        else:
+            print(f"Файл {file_path} пуст")
+
+        return True
+
     def help(self):
         print(" Доступные команды")
         print("  ls [путь] - показать содержимое директории")
         print("  cd [путь] - сменить директорию")
         print("  cal [год] или cal [месяц] [год] - вывод календаря")
+        print("  cat [файл] - показать содержимое файла")
         print("  uniq [файл] - фильтрация повторяющихся строк")
         print("  uname - информация о системе")
         print("  vfs-info - информация о загруженной VFS")
@@ -554,7 +590,7 @@ def main():
 
     args = parser.parse_args()
 
-    shell = ComLineEm(vfs_path=args.vfs_path, script_path=args.script)
+    shell = ShellEm(vfs_path=args.vfs_path, script_path=args.script)
     shell.run()
 
 

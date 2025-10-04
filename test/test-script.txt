@@ -1,6 +1,0 @@
-ls
-cd /home/user
-ls -la
-help
-boba
-exit

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vfs name="deep_structure">
+    <file name="root_file.txt">Root level file</file>
+
+    <folder name="level1">
+        <file name="file1.txt">First level file</file>
+
+        <folder name="level2">
+            <file name="file2.txt">Second level file</file>
+
+            <folder name="level3">
+                <file name="file3.txt">Third level file</file>
+                <file name="deep_data.bin" encoding="base64">
+                    RGVlcCBsZXZlbCBiaW5hcnkgZGF0YQpMaW5lIDEKTGluZSAyCkxpbmUgMQ==
+                </file>
+
+                <folder name="level4">
+                    <file name="deepest.txt">This is the deepest file!</file>
+                </folder>
+            </folder>
+        </folder>
+    </folder>
+
+    <folder name="projects">
+        <folder name="project_a">
+            <file name="source.py">print("Hello Project A")</file>
+            <file name="config.json">{"name": "project_a", "version": 1.0}</file>
+        </folder>
+
+        <folder name="project_b">
+            <file name="source.py">print("Hello Project B")</file>
+            <file name="config.json">{"name": "project_b", "version": 2.0}</file>
+        </folder>
+    </folder>
+
+    <folder name="temp">
+    </folder>
+</vfs>

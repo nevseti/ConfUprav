@@ -1,0 +1,29 @@
+
+uname
+vfs-info
+cal
+
+
+
+ls
+cd docs
+ls
+cd ..
+
+
+
+uniq numbers.txt
+
+
+
+cp hello.txt hello_copy.txt
+ls
+cp numbers.txt docs/numbers_copy.txt
+ls docs
+
+
+ls
+rmdir empty_dir
+ls
+
+exit

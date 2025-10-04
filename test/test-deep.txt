@@ -1,0 +1,34 @@
+
+ls
+vfs-info
+
+cd level1
+ls
+cd level2
+ls
+cd level3
+ls
+cd level4
+ls
+
+
+
+cd ../..
+ls
+cd ../../..
+ls
+
+
+cat root_file.txt
+cat level1/level2/level3/deep_data.bin
+
+
+ls
+rmdir temp
+ls
+
+
+ls /level1/level2
+cat /projects/project_a/source.py
+
+exit
