@@ -114,3 +114,120 @@
 <li><code>--vfs-path, -v</code> - путь к XML файлу VFS</li>
 <li><code>--script, -s</code> - путь к стартовому скрипту</li>
 </ul>
+<h2>Описание команд для сборки проекта и запуска тестов</h2>
+<p>Чтобы запустить эмулятор командной строки, вам нужен Python версии 3.7 и файл shell5.py.</p>
+<p>Базовый запуск: 
+
+```python shell.py``` - откроет интерактивную командную строку. </p>
+<p>Для расширенной функциональности используйте параметры: --vfs для загрузки виртуальной файловой системы из XML-файла, например:
+
+```python shell.py --vfs vfs.xml```
+
+Используйте --script для автоматического выполнения команд из файла-скрипта, например:
+
+```python shell.py --script test.txt```
+
+Оба параметра можно комбинировать: 
+
+```python shell.py --vfs vfs.xml --script text.txt```
+ 
+Файлы VFS содержат структуру папок и файлов в XML-формате, а скрипты - последовательности команд для автоматического выполнения.</p>
+<hr>
+<h2>Примеры использования</h2>
+
+```Run Command Line
+PS C:\Users\DNS\PycharmProjects\ConfUprav> python shell5.py --vfs-path vfs-xml/stage5.xml --script test/test-stage5.txt
+VFS 'stage5_test' успешно загружена из vfs-xml/stage5.xml
+=== Конфигурация эмулятора ===
+VFS path: vfs-xml/stage5.xml
+Script path: test/test-stage5.txt
+VFS name: stage5_test
+VFS SHA-256: 7595e218853110733d495f77c53d57a9bd55cc3bacb1689e6101d3ec7db932bc
+==============================
+Выполнение скрипта: test/test-stage5.txt
+--------------------------------------------------
+DNS@LAPTOP-ENS5I86M:~$ ls
+backup
+config.dat
+data.bin
+etc
+home
+readme.txt
+temp
+test.txt
+DNS@LAPTOP-ENS5I86M:~$ uname
+Операционная система: win32
+Имя устройства: LAPTOP-ENS5I86M
+Пользователь: DNS
+DNS@LAPTOP-ENS5I86M:~$ vfs-info
+VFS name: stage5_test
+SHA-256: 7595e218853110733d495f77c53d57a9bd55cc3bacb1689e6101d3ec7db932bc
+DNS@LAPTOP-ENS5I86M:~$ cal
+    October 2025
+Mo Tu We Th Fr Sa Su
+       1  2  3  4  5
+ 6  7  8  9 10 11 12
+13 14 15 16 17 18 19
+20 21 22 23 24 25 26
+27 28 29 30 31
+
+DNS@LAPTOP-ENS5I86M:~$ cal 9 2006
+   September 2006
+Mo Tu We Th Fr Sa Su
+             1  2  3
+ 4  5  6  7  8  9 10
+11 12 13 14 15 16 17
+18 19 20 21 22 23 24
+25 26 27 28 29 30
+
+DNS@LAPTOP-ENS5I86M:~$ uniq readme.txt
+
+        Добро пожаловать!
+        Это эмулятор командной строки
+
+DNS@LAPTOP-ENS5I86M:~$ uniq test.txt
+
+        яблоко
+        банан
+        вишня
+        яблоко
+
+DNS@LAPTOP-ENS5I86M:~$ cp readme.txt readme_new.txt
+Файл скопирован: '/readme.txt' -> '/readme_new.txt'
+DNS@LAPTOP-ENS5I86M:~$ ls
+backup
+config.dat
+data.bin
+etc
+home
+readme.txt
+readme_new.txt
+temp
+test.txt
+DNS@LAPTOP-ENS5I86M:~$ cp test.txt home/test_copy.txt
+Файл скопирован: '/test.txt' -> '/home/test_copy.txt'
+DNS@LAPTOP-ENS5I86M:~$ ls home
+test_copy.txt
+user
+DNS@LAPTOP-ENS5I86M:~$ ls
+backup
+config.dat
+data.bin
+etc
+home
+readme.txt
+readme_new.txt
+temp
+test.txt
+DNS@LAPTOP-ENS5I86M:~$ rmdir temp
+DNS@LAPTOP-ENS5I86M:~$ ls
+backup
+config.dat
+data.bin
+etc
+home
+readme.txt
+readme_new.txt
+test.txt
+DNS@LAPTOP-ENS5I86M:~$ exit
+```
